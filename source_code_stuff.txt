@@ -1,0 +1,1 @@
+CREATE TABLE STUDENT(SSN numeric(9) primary key,FNAME varchar(20),LNAME varchar(20),SEX enum('M', 'F'),DBIRTH date,STADDRESS varchar(20),CITY varchar(20),STATE char(2),ZIPCODE char(5),TELEPHONE numeric(10),MAJOR char(4),CLASS tinyint);
