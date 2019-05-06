@@ -18,8 +18,8 @@ mysql_select_db($username, $link);
 <a href="index.html">aww shit im not supposed to be here, take me back</a>
 <h1>YOU'VE COME TO THA TEACHER PAGE. YOU BEST BE A TEACHER IF YOU HERE, FO' REAL!</h1>
 <form action="teachers.php" method="POST">
-Enter a professor's social security number:<input type="text" name="ssn" />
-<input type="submit" />
+	Enter a professor's social security number:<input type="text" name="ssn" />
+	<input type="submit" />
 </form>
 <br>
 <?php
