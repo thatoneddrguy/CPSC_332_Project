@@ -1,12 +1,33 @@
+(initial connection stuff:)
+<?php
+$link = mysql_connect('mariadb', 'cs332s17', 'atheiV0b');
+if(!$link)
+{
+	die("Could not connect: ".mysql_error());
+}
+echo "Connected successfully.";
+?>
+
+mysql -h mariadb -u cs332s17 -p
+
+================================================================================
+
 (testing only:)
 
 CREATE TABLE STUDENT(SSN numeric(9) primary key,FNAME varchar(20),LNAME varchar(20),SEX enum('M', 'F'),DBIRTH date,STADDRESS varchar(20),CITY varchar(20),STATE char(2),ZIPCODE char(5),TELEPHONE numeric(10),MAJOR char(4),CLASS tinyint);
 
 ================================================================================
 
-(real stuff:)
+(DDL:)
 
-CREATE TABLE PROFESSOR(SSN numeric(9) primary key, NAME varchar(20), TELEPHONE numeric(10), SEX enum('M', 'F'), TITLE varchar(20), SALARY numeric(9) , ADDRESS varchar(255));
+CREATE TABLE PROFESSOR(SSN numeric(9) primary key, NAME varchar(40), TELEPHONE numeric(10), SEX enum('M', 'F'), TITLE varchar(20), SALARY numeric(9) , ADDRESS varchar(255));
 
 CREATE TABLE PROFESSOR_DEGREES(PROF_SSN numeric(9), DEGREENAME varchar(40), primary key (PROF_SSN, DEGREENAME), foreign key (PROF_SSN) references PROFESSOR(SSN));
 
+================================================================================
+
+(insertion:)
+INSERT INTO PROFESSOR
+	VALUES('111222333', 'Shawn Wang', '7141112222', 'M', 'Professor', '100000000', '580 N Berry St Brea CA 92821');
+INSERT INTO PROFESSOR
+	VALUES('171717171', 'Coco Wen', '7141717171', 'F', 'Doctor', '200000000', 'Somewhere over the rainbow');
