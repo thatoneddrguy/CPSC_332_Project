@@ -16,12 +16,9 @@ mysql_select_db($username, $link);
 </head>
 <body>
 <a href="index.html">aww shit im not supposed to be here, take me back</a>
-<h1>Check it out, you can input data to any of our awesome tables here:</h1>
-<form action="input_database_data.php" method="POST">
-	<select id="table" onchange="tableChange()">
-		<option value="professor">Professor</option>
-		<option value="professor_degrees">Professor_Degrees</option>
-	</select>
+<h1>Check it out, you can input data to the PROFESSOR table here:</h1>
+<form action="input_professor.php" method="POST">
+	SSN: <input name="SSN" />
 	<input type="submit" />
 </form>
 </body>
