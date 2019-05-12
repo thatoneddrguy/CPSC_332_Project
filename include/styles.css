@@ -2,3 +2,10 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+label {
+	float: left;
+	width: 120px;
+}
+#secret_menu {
+	height: 200px;
+}

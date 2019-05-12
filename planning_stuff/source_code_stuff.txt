@@ -24,11 +24,11 @@ CREATE TABLE PROFESSOR(SSN numeric(9) primary key NOT NULL, NAME varchar(50) NOT
 
 CREATE TABLE PROFESSOR_DEGREES(PROF_SSN numeric(9) NOT NULL, DEGREENAME varchar(40) NOT NULL, primary key (PROF_SSN, DEGREENAME), foreign key (PROF_SSN) references PROFESSOR(SSN));
 
-CREATE TABLE DEPARTMENT(DEPT_NO numeric(3) primary key NOT NULL, DEPT_NAME varchar(40) NOT NULL, DEPT_PHONE_NO numeric(10) NOT NULL, LOCATION varchar(40) NOT NULL, CHAIRPERSON_SSN numeric(9) NOT NULL, foreign key (CHAIRPERSON_SSN) references PROFESSOR(SSN));
+CREATE TABLE DEPARTMENT(DEPT_NO numeric(3) primary key NOT NULL, DEPT_NAME varchar(40) NOT NULL, DEPT_PHONE_NO numeric(10) NOT NULL, LOCATION varchar(40) NOT NULL, CHAIRPERSON_SSN numeric(9) NOT NULL UNIQUE, foreign key (CHAIRPERSON_SSN) references PROFESSOR(SSN));
 
 CREATE TABLE COURSE(COURSE_NO numeric(3) primary key NOT NULL, COURSE_TITLE varchar(40) NOT NULL, TEXTBOOK varchar(100) NOT NULL, UNITS numeric(1) NOT NULL, DEPT_NUM numeric(3) NOT NULL, foreign key (DEPT_NUM) references DEPARTMENT(DEPT_NO));
 
-CREATE TABLE SECTION(COURSE_NUM numeric(3) NOT NULL, SECTION_NO numeric(2) NOT NULL, CLASSROOM varchar(7) NOT NULL, NUMBER_OF_SEATS numeric(3) NOT NULL, MEETINGDAYS varchar(9) NOT NULL, BEGINTIME varchar(5) NOT NULL, ENDTIME varchar(5) NOT NULL, PROFESSOR_SSN numeric(9) NOT NULL, primary key (COURSE_NUM, SECTION_NO), foreign key (COURSE_NUM) references COURSE(COURSE_NO), foreign key (PROFESSOR_SSN) references PROFESSOR(SSN));
+CREATE TABLE SECTION(COURSE_NUM numeric(3) NOT NULL, SECTION_NO numeric(2) NOT NULL, CLASSROOM varchar(7) NOT NULL, NUMBER_OF_SEATS numeric(3) NOT NULL, MEETINGDAYS varchar(7) NOT NULL, BEGINTIME varchar(5) NOT NULL, ENDTIME varchar(5) NOT NULL, PROFESSOR_SSN numeric(9) NOT NULL, primary key (COURSE_NUM, SECTION_NO), foreign key (COURSE_NUM) references COURSE(COURSE_NO), foreign key (PROFESSOR_SSN) references PROFESSOR(SSN));
 
 CREATE TABLE STUDENT(CWID numeric(9) NOT NULL, STUDENT_NAME varchar(50) NOT NULL, STUDENT_ADDRESS varchar(255) NOT NULL, STUDENT_PHONE numeric(10) NOT NULL, MAJOR numeric(3) NOT NULL, MINOR numeric(3) NOT NULL, foreign key (MAJOR) references DEPARTMENT(DEPT_NO), foreign key (MINOR) references DEPARTMENT(DEPT_NO));
 
@@ -38,12 +38,16 @@ CREATE TABLE PREREQ(CNUM numeric(3) NOT NULL, PREREQCNUM numeric(3) NOT NULL, pr
 
 ================================================================================
 
+(SQL STATEMENTS:)
+
+"SELECT COURSE_TITLE, CLASSROOM, MEETINGDAYS, BEGINTIME, ENDTIME FROM COURSE, SECTION, PROFESSOR WHERE PROFESSOR_SSN = SSN AND COURSE_NO = COURSE_NUM AND PROFESSOR_SSN = '".$_POST["ssn"]."';"
+
+================================================================================
+
 (insertion:)
 INSERT INTO PROFESSOR
 	VALUES('111222333', 'Shawn Wang', '7141112222', 'M', 'Professor', '100000000', '580 N Berry St Brea CA 92821');
 INSERT INTO PROFESSOR
 	VALUES('171717171', 'Coco Wen', '7141717171', 'F', 'Doctor', '200000000', 'Somewhere over the rainbow');
-	
-INSERT INTO DEPARTMENT('001'	
 	
 INSERT INTO COURSE VALUES ('332', 'File System and Database', 'DB textbook', '3', '001');
