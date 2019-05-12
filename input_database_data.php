@@ -21,7 +21,6 @@ mysql_select_db($username, $link);
 	<select id="table" onchange="tableChange()">
 		<option value="professor">Professor</option>
 		<option value="professor_degrees">Professor_Degrees</option>
-		
 	</select>
 	<input type="submit" />
 </form>

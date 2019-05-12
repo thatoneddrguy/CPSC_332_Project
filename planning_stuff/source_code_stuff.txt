@@ -20,9 +20,21 @@ CREATE TABLE STUDENT(SSN numeric(9) primary key,FNAME varchar(20),LNAME varchar(
 
 (DDL:)
 
-CREATE TABLE PROFESSOR(SSN numeric(9) primary key, NAME varchar(40), TELEPHONE numeric(10), SEX enum('M', 'F'), TITLE varchar(20), SALARY numeric(9) , ADDRESS varchar(255));
+CREATE TABLE PROFESSOR(SSN numeric(9) primary key NOT NULL, NAME varchar(50) NOT NULL, TELEPHONE numeric(10) NOT NULL, SEX enum('M', 'F') NOT NULL, TITLE varchar(20) NOT NULL, SALARY numeric(9) NOT NULL, ADDRESS varchar(255) NOT NULL);
 
-CREATE TABLE PROFESSOR_DEGREES(PROF_SSN numeric(9), DEGREENAME varchar(40), primary key (PROF_SSN, DEGREENAME), foreign key (PROF_SSN) references PROFESSOR(SSN));
+CREATE TABLE PROFESSOR_DEGREES(PROF_SSN numeric(9) NOT NULL, DEGREENAME varchar(40) NOT NULL, primary key (PROF_SSN, DEGREENAME), foreign key (PROF_SSN) references PROFESSOR(SSN));
+
+CREATE TABLE DEPARTMENT(DEPT_# numeric(3) primary key NOT NULL, DEPT_NAME varchar(40) NOT NULL, DEPT_PHONE_# numeric(10) NOT NULL, LOCATION varchar(40) NOT NULL, CHAIRPERSON numeric(9) NOT NULL, foreign key (CHAIRPERSON) references PROFESSOR(SSN));
+
+CREATE TABLE COURSE(COURSE_# numeric(3) primary key NOT NULL, COURSE_TITLE varchar(40) NOT NULL, TEXTBOOK varchar(100) NOT NULL, UNITS numeric(1) NOT NULL, DEPT_NUM numeric(3) NOT NULL, foreign key (DEPT_NUM) references DEPARTMENT(DEPT_#));
+
+CREATE TABLE SECTION(COURSE_NUM numeric(3) NOT NULL, SECTION_# numeric(2) NOT NULL, CLASSROOM varchar(7) NOT NULL, NUMBER_OF_SEATS numeric(3) NOT NULL, MEETINGDAYS varchar(9) NOT NULL, BEGINTIME varchar(5) NOT NULL, ENDTIME varchar(5) NOT NULL, PROFESSOR_SSN numeric(9) NOT NULL, primary key (COURSE_NUM, SECTION_#), foreign key (COURSE_NUM) references COURSE(COURSE_#), foreign key (PROFESSOR_SSN) references PROFESSOR(SSN));
+
+CREATE TABLE STUDENT(CWID numeric(9) NOT NULL, STUDENT_NAME varchar(50) NOT NULL, STUDENT_ADDRESS varchar(255) NOT NULL, STUDENT_PHONE numeric(10) NOT NULL, MAJOR numeric(3) NOT NULL, MINOR numeric(3) NOT NULL, foreign key (MAJOR) references DEPARTMENT(DEPT_#), foreign key (MINOR) references DEPARTMENT(DEPT_#));
+
+CREATE TABLE ENROLL(COURSE_NUMBER numeric(3) NOT NULL, SECTION_NUMBER numeric(2) NOT NULL, CAMPUSWIDEID numeric(9) NOT NULL, GRADE enum('A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'), primary key (COURSE_NUMBER, SECTION_NUMBER, CAMPUSWIDEID), foreign key (COURSE_NUMBER, SECTION_NUMBER) references SECTION(COURSE_NUM, SECTION_#));
+
+CREATE TABLE PREREQ(CNUM numeric(3) NOT NULL, PREREQCNUM numeric(3) NOT NULL, primary key (CNUM, PREREQCNUM), foreign key (CNUM) references COURSE(COURSE_#), foreign key (PREREQCNUM) references COURSE(COURSE_#));
 
 ================================================================================
 
