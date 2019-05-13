@@ -32,7 +32,16 @@ Your browser doesn't support the object tag.
 if ($_POST["cwid"] != "")
 {
 	// attempt to execute insertion query, return error if error found
-	mysql_query("INSERT INTO STUDENT VALUES('".$_POST["cwid"]."', '".$_POST["student_name"]."', '".$_POST["student_address"]."', '".$_POST["student_phone"]."', '".$_POST["major"]."', '".$_POST["minor"]."');");
+	$insert_query = "INSERT INTO STUDENT VALUES('".$_POST["cwid"]."', '".$_POST["student_name"]."', '".$_POST["student_address"]."', '".$_POST["student_phone"]."', '".$_POST["major"]."'";
+	if($_POST["minor"] != "")
+	{
+		$insert_query = $insert_query.", '".$_POST["minor"]."');";
+	}
+	else
+	{
+		$insert_query = $insert_query.", NULL);";
+	}
+	mysql_query($insert_query);
 	echo mysql_error($link)."\n";
 	
 	// display all results from table
