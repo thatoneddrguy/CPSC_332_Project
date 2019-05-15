@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link rel="stylesheet" href="include/styles.css">
+
 <title>Home</title>
 <style>
-.button {
-  background-color: #D6EAF8;
+.buttonT {
+  background-color: #91A8d0;
   border: none;
   color: black;
-  padding: 12px 28px;
+  padding: 18px 40px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -15,6 +18,30 @@
   margin: 4px 2px;
   cursor: pointer;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  justify-content:center;
+}
+.buttonS {
+  background-color: #f7cac9;
+  border: none;
+  color: black;
+  padding: 18px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  justify-content:center;
+}
+.center {
+  margin: auto;
+  width: 25%;
+  padding: 35px;
+}
+#h1{
+  text-align: center;
+  font-family:Lucida Console;
 }
 .button:hover {background-color: #3e8e41}
 .button:active {
@@ -22,12 +49,19 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 </style>
-<link rel="stylesheet" href="include/styles.css">
 </head>
 <body>
-<h1>Welcome to CSUF Database</h1>
-<a href="teachers.php" class="button">Teacher Portal</a>
+
+<h1 id="h1" >
+<i class="fas fa-cloud"></i>
+Welcome to CSUF Database
+<i class="fas fa-cloud"></i></h1>
+
+<div class="center">
+<a href="teachers.php" class="buttonT">Teacher Portal</a>
 <br>
-<a href="students.php" class="button">Student Portal</a>
+<br>
+<a href="students.php" class="buttonS">Student Portal</a>
+</div>
 </body>
 </html>
